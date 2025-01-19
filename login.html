@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="background">
+        <div class="card">
+            <div class="login">
+                <form id="log">
+                    <input type="text" name="username" id="usernam" placeholder="Username"required> 
+                    <input type="password" name="password" id="password" placeholder="Password"required>
+                    <input type="submit" onclick="" value="Login">
+                    <p onclick="showDaftar('daftar')" style="cursor: pointer;">Belum Punya Akun?</p>
+                    <input type="button" onclick="location.href='index.html'" value="Kembali ke Halaman Utama">
+                </form>
+            </div>
+            <div class="daftar">
+                <form id="daftar">
+                    <input type="text" name="nama" id="nama" placeholder="Nama Lengkap" required>
+                    <input type="text" name="usernamedaftar" id="usernamedaftar" placeholder="Username"required>
+                    <input type="password" name="password" id="passworddaftar" placeholder="password"required>
+                    <input type="text" name="alamat" id="alamat" placeholder="Alamat"required>
+                    <input type="tel" name="telephone" id="telephone" placeholder="telephone"required><br>
+                    <input type="submit" onclick="" value="Daftar"><br>
+                    <input type="reset" value="Reset">
+                    <p onclick="showDaftar('login')" style="cursor: pointer;">Sudah Punya Akun?</p>
+                    <input type="button" onclick="location.href='index.html'" value="Kembali ke Halaman Utama">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+function showDaftar(ops) {
+    if (ops == 'daftar') {
+        document.querySelector(".daftar").style.display = "block";
+        document.querySelector(".login").style.display = "none";    
+    }else{
+        document.querySelector(".daftar").style.display = "none";
+        document.querySelector(".login").style.display = "block";
+    }
+}
+
+document.querySelector("#log").addEventListener("submit", function(event) {
+    event.preventDefault();
+    var username = document.querySelector("#usernam").value;
+    localStorage.setItem("username", username);
+    localStorage.setItem("Status", 'Terdaftar');
+    window.location.href = 'shopping.html';
+});
+
+document.querySelector("#daftar").addEventListener("submit", function(event) {
+    event.preventDefault();
+    var username = document.querySelector("#usernamedaftar").value;
+    localStorage.setItem("usernamedaftar", username);
+    var alamat = document.querySelector("#alamat").value;
+    var telephone = document.querySelector("#telephone").value;
+
+    localStorage.setItem("usernamedaftar", username);
+    localStorage.setItem("alamat", alamat);
+    localStorage.setItem("telephone", telephone);
+
+    showDaftar('login');
+});
+
+</script>
+
+
+<style>
+.background {
+    background-color: #f0f0f0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login {
+    display: block;
+}
+
+.daftar {
+    display: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"], input[type="password"], input[type='tel'] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="reset"]{
+    padding: 10px;
+    background-color: #801100;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #3e8e41;
+}
+</style>
